@@ -6,14 +6,14 @@ import './globals.css'
 
 
 export default function Home(){
-  const [nama, setNama] = useState('Dwi Afiqah Achmad')
-  const [change, setChange] = useState (null)
+  const [nama, setNama] = useState(null)
+  const [change, setChange] = useState ('Dwi Afiqah Achmad')
 
   // function button input
   function getInput(val){
-    // setNama(val.target.value);
+    setNama(val.target.value);
     setChange(false);
-    // console.warn(val.target.value);
+    console.warn(val.target.value);
   }
 
   return(
@@ -30,7 +30,7 @@ export default function Home(){
             />
           </div>
           <div className='content-header-banner'>
-            <h1>{nama}</h1>
+            <h1>{change}</h1>
             {
               change?
               <h1>{nama}</h1> 
@@ -45,7 +45,7 @@ export default function Home(){
         <div className='cta-banner-wrapper'>
           {/* membuat button untuk input fields */}
           <input className='input' 
-            style={{marginTop: '12px'}} type='text' onChange={getInput} placeholder='Masukkan nama'/>
+            style={{marginTop: '12px'}} type='text' onChange={getInput} placeholder='Masukkan nama...'/>
           <button className='cta-button' style={{
             marginTop: '12px'
           }} onClick={()=>setChange(true)}>
