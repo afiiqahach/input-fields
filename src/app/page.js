@@ -6,16 +6,21 @@ import './globals.css'
 
 
 export default function Home(){
-  const [nama, setNama] = useState(null)
-  const [change, setChange] = useState ('Dwi Afiqah Achmad')
+  const [input, setInput] = useState('')
+  const [nama, setNama] = useState ('Dwi Afiqah Achmad')
 
   // function button input
-  function getInput(val){
-    setNama(val.target.value);
-    setChange(false);
-    console.warn(val.target.value);
+  const handlerGantiNama = () => {
+    setNama(input);
   }
 
+  const handlerInputNama = (val) => {
+    setInput(val);
+  }
+
+  function enterButton(e){
+    if(e.code === "Enter") handlerGantiNama();
+  }
   return(
     // membuat struktur2 seperti image, kalimat2 dll
     <div className='body'>
@@ -30,12 +35,7 @@ export default function Home(){
             />
           </div>
           <div className='content-header-banner'>
-            <h1>{change}</h1>
-            {
-              change?
-              <h1>{nama}</h1> 
-              :null
-            }
+            <h1>{nama}</h1>
             <div className='bio-nim-header-banner'> 
             <p>D121211014</p>
             <p>Tetap semangat!!!!</p>
@@ -45,10 +45,16 @@ export default function Home(){
         <div className='cta-banner-wrapper'>
           {/* membuat button untuk input fields */}
           <input className='input' 
-            style={{marginTop: '12px'}} type='text' onChange={getInput} placeholder='Masukkan nama...'/>
+            style={{marginTop: '12px'}} placeholder='Masukkan nama...' 
+            onInput={(val) => handlerInputNama(val.target.value)}
+            onKeyDown={(value) => {
+              enterButton(value)
+            }}/>
           <button className='cta-button' style={{
             marginTop: '12px'
-          }} onClick={()=>setChange(true)}>
+          }} onClick={()=> {
+            handlerGantiNama();
+          }}>
             <p>Change Name</p>
           </button>
         </div>
