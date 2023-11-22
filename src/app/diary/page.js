@@ -21,7 +21,7 @@ export default function Diary() {
             setIsiDiary(isi_diary);
         }
         catch(error){
-            console.log("error data: ${error}")
+            console.log("error fetching data: ${error}")
         }   
     }
 
@@ -43,7 +43,7 @@ export default function Diary() {
                     ))}
                 </ul>
             ) : (
-                "API not loading"
+                "API loading..."
             )}
         </div>
     )

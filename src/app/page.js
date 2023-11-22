@@ -8,6 +8,7 @@ import "@styles/home.css"
 export default function Home(){
   const [input, setInput] = useState('')
   const [nama, setNama] = useState ('Dwi Afiqah Achmad')
+  const [empty, setEmpty] = useState (true)
 
   // function button input
   const handlerGantiNama = () => {
@@ -16,10 +17,32 @@ export default function Home(){
 
   const handlerInputNama = (val) => {
     setInput(val);
+    setEmpty(val.trim() === '');
   }
 
   function enterButton(e){
     if(e.code === "Enter") handlerGantiNama();
+  }
+
+  let content;
+  if (empty) {
+    content = (
+      <button className='cta' style={{
+        marginTop: '12px'
+      }}>
+        <p>DISABLED</p>
+      </button>
+    );
+  }else {
+    content = (
+      <button className='cta-button' style={{
+        marginTop: '12px'
+      }} onClick={()=> {
+        handlerGantiNama();
+      }}>
+        <p>Change Name</p>
+      </button>
+    )
   }
   return(
     // membuat struktur2 seperti image, kalimat2 dll
@@ -50,13 +73,7 @@ export default function Home(){
             onKeyDown={(value) => {
               enterButton(value)
             }}/>
-          <button className='cta-button' style={{
-            marginTop: '12px'
-          }} onClick={()=> {
-            handlerGantiNama();
-          }}>
-            <p>Change Name</p>
-          </button>
+          {content}
         </div>
       </div>
     </div>
