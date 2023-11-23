@@ -2,6 +2,7 @@
 import '@styles/diary.css'
 import { useEffect, useState } from "react"
 import axios from "axios"
+import Link from 'next/link';
 
 export default function Diary() {
     const [judul, setJudul] = useState([]);
@@ -34,12 +35,15 @@ export default function Diary() {
             {judul.length > 0 ? (
                 <ul>
                     {judul.map((item, idx) => (
-                        <li>
-                            <div className='diary-container'>
-                                <h1>{judul[idx]}</h1>
-                                <p className='p-diary'>{isiDiary[idx]}</p>
-                            </div>
-                        </li>
+                        <Link href={`/diary/${item}/${isiDiary[idx]}`}>
+                            <li key={idx}>
+                                <div className='diary-container'>
+                                    <h1>{judul[idx]}</h1>
+                                    <p className='p-diary'>{isiDiary[idx]}</p>
+                                </div>
+                            </li>
+                        </Link>
+        
                     ))}
                 </ul>
             ) : (

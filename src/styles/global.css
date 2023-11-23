@@ -19,6 +19,8 @@ body{
     width: 100vw;
     height: 100vh;
 
+    padding-top: 60px;
+    overflow-x: hidden;
     /* styles navbar */
     
 
